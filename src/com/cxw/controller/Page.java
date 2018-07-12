@@ -3,9 +3,14 @@ package com.cxw.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
@@ -23,8 +28,9 @@ import com.cxw.service.CommService;
 public class Page {
     @Autowired
     CommService commService;
-/*    @Resource(name = "jmsTemplate")
-    private JmsTemplate jmsTemplate;*/
+
+    @Resource(name = "jmsTemplate")
+    private JmsTemplate jmsTemplate;
 
     @RequestMapping("/{url}")
     public String page2(@PathVariable String url) {
@@ -53,13 +59,13 @@ public class Page {
         model.addAttribute("err", "");
         HttpSession session = request.getSession();
         session.setAttribute("User", "ok");
-
         return "mun";
     }
-/*
-    @RequestMapping("/send1")
-    public String send1() {
-        sendMessage(new ActiveMQQueue("cxw"),"hello1");
+
+
+    @RequestMapping("/send1/{user}")
+    public String send1(@PathVariable String user) {
+        sendMessage(new ActiveMQQueue(user),"hello1");
         return "";
     }
     @RequestMapping("/send2")
@@ -69,9 +75,8 @@ public class Page {
     }
 
 
-
     public void sendMessage(Destination destination, final String msg){
-        System.out.println(Thread.currentThread().getName()+" 向队列"+destination.toString()+"发送消息---------------------->"+msg);
+        System.out.println(Thread.currentThread().getName()+" 向队列"+destination.toString()+"发送消息---------------------->\t"+msg);
         jmsTemplate.send(destination, new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(msg);
@@ -80,13 +85,12 @@ public class Page {
     }
     public void sendMessage(final String msg){
         String destination = jmsTemplate.getDefaultDestinationName();
-        System.out.println(Thread.currentThread().getName()+" 向队列"+destination+"发送消息---------------------->"+msg);
+        System.out.println(Thread.currentThread().getName()+" 向队列"+destination+"发送消息---------------------->\t"+msg);
         jmsTemplate.send(new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(msg);
             }
         });
     }
-*/
 
 }

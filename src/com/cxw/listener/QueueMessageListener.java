@@ -1,5 +1,4 @@
 package com.cxw.listener;
-/*
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -16,10 +15,5 @@ public class QueueMessageListener implements MessageListener {
             e.printStackTrace();
         }
     }
-    多行注释
-    可以
-    注释
-    很多
-    行~~~~~~~~~~~~
 
-}*/
+}

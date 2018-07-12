@@ -38,4 +38,6 @@
 	<!-- 开启事务注解 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
+	<!--activemq config-->
+	<import resource="applicationContext-ActiveMQ.xml"></import>
 </beans>

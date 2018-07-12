@@ -180,6 +180,12 @@
       <artifactId>commons-net</artifactId>
       <version>${commons-net.version}</version>
     </dependency>
+    <!--activeMQ -->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-client</artifactId>
+      <version>5.12.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>wecan</finalName>
