@@ -21,7 +21,10 @@
   <listener>
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
-  
+  <!--启动socket服务-->
+  <listener>
+    <listener-class>com.cxw.socket.InitSocket</listener-class>
+  </listener>
   
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>

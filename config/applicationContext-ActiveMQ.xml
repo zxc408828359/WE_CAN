@@ -39,7 +39,7 @@
     </bean>
     <!-- 话题目的地  Topic-->
     <bean id="itemAddTopic" class="org.apache.activemq.command.ActiveMQTopic">
-        <constructor-arg  value="item-add-topic"/>
+        <constructor-arg  value="topic"/>
     </bean>
     <!-- 定义消息队列（Queue） -->
     <bean id="demoQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
@@ -72,7 +72,5 @@
         <property name="destination" ref="queueDestination"/>
         <property name="messageListener" ref="queueMessageListener"/>
     </bean>
-
-
 
 </beans>
